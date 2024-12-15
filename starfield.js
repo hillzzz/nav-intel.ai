@@ -78,7 +78,7 @@ const mainShader = /*glsl*/`#version 300 es
             col[i]=c;
         }
 
-        float backgroundStrength = 0.3;
+        float backgroundStrength = 0.4;
         float backgroundFade_px = 400.0;
         float starsFade_px = 200.0;
 
@@ -86,14 +86,16 @@ const mainShader = /*glsl*/`#version 300 es
             max(col.x, max(col.y, col.z))
             + (
                 smoothstep(0.0, 1.0, (iResolution.y - fragCoord.y) / backgroundFade_px)
-                * smoothstep(0.0, 1.0, (fragCoord.y) / backgroundFade_px)
+                * 
+                smoothstep(0.0, 1.0, (fragCoord.y) / backgroundFade_px)
             ) * backgroundStrength;
         fragColor = vec4(col * d * 3., alpha);
 
         // fade out at top
         fragColor *= 
             smoothstep(0.0, 1.0, (iResolution.y - fragCoord.y) / starsFade_px)
-            * smoothstep(0.0, 1.0, (fragCoord.y) / starsFade_px);
+            *
+            smoothstep(0.0, 1.0, (fragCoord.y) / starsFade_px);
     }
 
     void main() {
