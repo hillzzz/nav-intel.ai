@@ -1,5 +1,5 @@
 // Initialize WebGL
-const canvas = document.getElementById('glCanvas');
+const canvas = document.getElementById('starfieldCanvas');
 if (!canvas) {
     throw new Error('Canvas not found');
 }
