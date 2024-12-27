@@ -117,8 +117,9 @@
         }
 
         .nav-intel-logo svg {
-            width: 160px;
-            height: 160px;
+            width: min(160px, 16vw);
+            height: auto;
+            aspect-ratio: 1;
         }
 
         .nav-intel-logo span {  
@@ -127,7 +128,7 @@
             /* font-weight: 100; */
             font-weight: normal;
             font-style: normal;
-            font-size: 60px;
+            font-size: min(60px, 6vw);
         }
 
         .teaser-image {
