@@ -71,8 +71,8 @@
         }
 
         .details-container {
+            overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
             flex: 1;
             gap: 3em;
             max-width: 900px;
@@ -95,8 +95,15 @@
             /* background: rgba(255,255,255, 0.05); */
         }
 
-        .details-container > div {
-            max-width: 50%;
+        /* mobile layout column */
+        @media screen and (max-width: 800px) {
+            .details-container {
+                flex-direction: column;
+            }
+
+            .details-container img {
+                width: 100%;
+            }
         }
 
         .right-align {
