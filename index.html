@@ -105,8 +105,10 @@
                 flex-direction: column;
             }
 
-            .details-container img {
+            .details-container .details-image {
                 width: 100%;
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
@@ -160,6 +162,10 @@
             height: 300px;
             object-fit: cover;
             border-radius: 20px;
+            
+            /* floating */
+            float: right;
+            margin: 20px;
         }
 
         /* header and navigation */
@@ -284,7 +290,10 @@
         <div class="details-container">
             <div>
                 <h1>A Chart Plotter Like You've Never Seen Before</h1>
-                <div>Key Features:
+                <div>
+                    <img class="details-image" src="assets/images/superfluidity_A_tablet_AI_chart_plotter_mounted_on_a_sailing_ya_d0e65478-1458-40d7-a3b9-c42925f198a2.png" />
+                    
+                    Key Features:
                     <ul>
                         <li>Official UKHO Admiralty charts</li>
                         <li>Advanced AI-powered route planning</li>
@@ -300,11 +309,8 @@
                         <li>All-in-one device, replacing multiple apps and streamlining your navigation experience</li>
                         <li>Experience the Future of Sailing Navigation</li>
                     </ul>
+
                 </div>
-            </div>
-            <div>
-                <img class="details-image"
-                    src="assets/images/superfluidity_A_tablet_AI_chart_plotter_mounted_on_a_sailing_ya_d0e65478-1458-40d7-a3b9-c42925f198a2.png" />
             </div>
         </div>
 
@@ -312,7 +318,7 @@
             <div>
                 <h1>A new class of sailing computer</h1>
                 <div>
-                    <p></p>The new AI-powered Chart Plotter revolutionizes the world of sailing navigation by
+                    <p>The new AI-powered Chart Plotter revolutionizes the world of sailing navigation by
                     representing
                     a completely new type of sailing computer that converges advanced technologies, including artificial
                     intelligence, machine learning, and augmented reality. Unlike traditional chart plotters that simply
