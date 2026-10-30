@@ -1,0 +1,108 @@
+/* Navigational Intelligence: "Type in the sky" homepage. */
+
+:root {
+  --night: #000013;
+  --star: #F2EFE8;
+  --warm: #E3E0D8;
+  --ink: #121212;
+  --mut: #5D5B56;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--warm); color: var(--ink); font: 400 16px/1.5 "Mona Sans", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, p, ul { margin: 0; }
+ul { list-style: none; padding: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.symbols { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Font sizes follow the page width through container units. */
+.page { container-type: inline-size; overflow-x: clip; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: 22px; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.btn.light { background: var(--star); color: var(--night); }
+.btn.dark { background: var(--ink); color: #fff; }
+
+/* ---------- Night sky scene ---------- */
+.sc { position: relative; overflow: hidden; background: var(--night); color: var(--star); isolation: isolate; }
+.sc-stage { position: absolute; left: 0; top: 0; }
+.sc-stage img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sc-fade { position: absolute; inset: 0; pointer-events: none; }
+.sc-sky { position: absolute; z-index: 1; left: 0; top: 0; width: 100%; mix-blend-mode: screen; pointer-events: none;
+  -webkit-mask-image: var(--mask); mask-image: var(--mask); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.sc-sky canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* The photograph again, cut down to the boat and laid over the name so the mast crosses the letters. */
+.sc-front { position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  -webkit-mask-image: var(--front); mask-image: var(--front); -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+
+/* ---------- Hero ---------- */
+.hero { height: 100svh; min-height: 620px; max-height: 1100px; }
+.nav { position: relative; z-index: 4; display: flex; align-items: center; gap: 28px; padding: 22px max(36px, env(safe-area-inset-right)) 22px max(36px, env(safe-area-inset-left)); font-size: 15px; }
+.nav .mark { margin-right: auto; display: flex; }
+.nav .mark svg { width: 32px; height: 32px; }
+.nav ul { display: flex; gap: 26px; color: rgba(242,239,232,.86); }
+.nav ul a:hover { color: var(--star); }
+.nav .btn { height: 38px; padding: 0 16px; }
+
+/* The name sits just above the horizon, wherever the photograph puts it. */
+.word { position: absolute; z-index: 2; left: 28px; right: 28px; bottom: calc(100% - var(--hzy, 70%) + 2.5cqi);
+  font-stretch: 112%; font-weight: 700; font-size: min(14.2cqi, 24svh); line-height: .84; letter-spacing: -.035em; color: var(--star); }
+.word span { display: block; }
+.sub { position: absolute; z-index: 4; left: 36px; bottom: 36px; display: grid; justify-items: start; gap: 16px; max-width: 380px; }
+.sub p { font-size: 16.5px; color: rgba(242,239,232,.88); }
+
+/* ---------- Statement ---------- */
+.statement { padding: 104px 36px 96px; display: grid; gap: 30px; }
+.statement p { font-size: clamp(28px, 3.6cqi, 52px); line-height: 1.12; letter-spacing: -.02em; font-weight: 500; max-width: 24ch; }
+.statement ul { display: flex; gap: 28px; flex-wrap: wrap; font-weight: 600; }
+.statement ul a { border-bottom: 1.5px solid currentColor; padding-bottom: 1px; }
+
+/* ---------- Products ---------- */
+.products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 0 12px 12px; }
+.products article { background: var(--night); color: var(--star); border-radius: 18px; padding: 48px 40px 36px; display: grid; gap: 32px; grid-template-rows: 1fr auto; min-height: 560px; scroll-margin-top: 12px; }
+.products .art { display: grid; place-items: center; }
+.products svg.plotter { width: 100%; max-width: 460px; height: auto; }
+.products svg.beacon { width: 104px; height: auto; }
+.products h2 { font-stretch: 112%; font-weight: 700; font-size: clamp(30px, 3.6cqi, 48px); letter-spacing: -.03em; line-height: 1; }
+.products p { color: rgba(242,239,232,.72); margin-top: 12px; max-width: 48ch; }
+.products .meta { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--star); font-weight: 600; margin-top: 20px; }
+.products .meta a { border-bottom: 1.5px solid currentColor; }
+
+/* ---------- Testing ---------- */
+.testing img { width: 100%; height: clamp(360px, 46cqi, 640px); object-fit: cover; object-position: 50% 62%; }
+.testing > div { padding: 48px 36px 104px; display: grid; gap: 18px; justify-items: start; }
+.testing h2 { font-stretch: 112%; font-weight: 700; font-size: clamp(28px, 3.2cqi, 44px); letter-spacing: -.03em; line-height: 1.02; }
+.testing p { font-size: clamp(18px, 1.8cqi, 22px); line-height: 1.4; max-width: 46ch; }
+
+/* ---------- Footer ---------- */
+.foot { background: var(--night); color: rgba(242,239,232,.78); padding: 44px 28px 0; overflow: hidden; }
+.foot .row { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 14.5px; padding: 0 8px; }
+.foot .contact { font-size: 22px; color: var(--star); font-weight: 600; margin-bottom: 6px; }
+.foot ul { display: flex; gap: 22px; flex-wrap: wrap; align-self: start; }
+.foot a:hover { color: var(--star); }
+.foot .credits { padding: 28px 8px 0; font-size: 12.5px; color: rgba(242,239,232,.5); max-width: 110ch; }
+.foot .credits a { text-decoration: underline; text-underline-offset: 2px; }
+.foot .big { font-stretch: 112%; font-weight: 700; font-size: 14.2cqi; line-height: .8; letter-spacing: -.035em; color: var(--star); margin-top: 48px; transform: translateY(18%); white-space: nowrap; }
+
+@container (max-width: 860px) {
+  .nav ul { display: none; }
+  .products { grid-template-columns: minmax(0, 1fr); }
+  .products article { min-height: 0; }
+}
+@container (max-width: 560px) {
+  .hero { min-height: 680px; max-height: 860px; }
+  .nav { padding: 16px; }
+  .sc-front { display: none; } /* on a phone the mast would cut through the name, so it passes behind it */
+  .word { left: 14px; right: 14px; bottom: auto; top: calc(var(--hzy, 70%) * .4); font-size: 15.4cqi; }
+  .sub { left: 16px; right: 16px; bottom: auto; top: calc(var(--hzy, 70%) * .4 + 30cqi); gap: 14px; }
+  .sub p { font-size: 15px; }
+  .statement { padding: 64px 16px 56px; }
+  .products { padding: 0 8px 8px; gap: 8px; }
+  .products article { padding: 36px 20px 26px; }
+  .testing > div { padding: 32px 16px 64px; }
+  .foot { padding: 36px 12px 0; }
+  .foot .big { font-size: 13.6cqi; }
+}
